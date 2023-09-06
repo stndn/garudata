@@ -1,2 +1,50 @@
-# garudata
-Data Integration Project
+# Garudata
+
+Garudata is a simplified showcase of various tools coming together to build an end-to-end data platform.
+
+It is designed to streamline data ingestion, transformation, access, and sharing, allowing data users to easily understand data throughout its journey.
+
+## Technology
+
+The data platform will be built on top of the followings:
+* [Apache Airflow][url-airflow]
+* [Apache Spark][url-spark]
+* [Apache Superset][url-superset]
+* [Docker + Compose][url-docker]
+* [MinIO][url-minio]
+* [Nginx][url-nginx]
+* [PostgreSQL][url-psql]
+
+All tools (except for Nginx) will be deployed as containers. Host OS is [Ubuntu Server 22.04][url-ubuntu].
+
+## Roadmap
+
+The list is not exhaustive and may change along the way:
+- [ ] Design end-to-end data platform architecture
+- [ ] Setup the server and the components
+- [ ] Develop a data journey use case
+- [ ] Design data model
+- [ ] Develop data extraction script
+- [ ] Deploy workflow using Airflow
+- [ ] Design simple dashboards
+- [ ] Other improvements along the way
+
+## License
+
+The data platform is a self-learning project. As such, it is shared under [The Unlicense](/UNLICENSE.txt).
+
+
+## References
+
+(References organization in progress)
+
+
+<!-- Links -->
+[url-airflow]: https://airflow.apache.org/ "Apache Airflow"
+[url-spark]: https://spark.apache.org/ "Apache Spark"
+[url-superset]: https://superset.apache.org/ "Apache Superset"
+[url-docker]: https://docs.docker.com/compose/ "Docker + Compose"
+[url-minio]: https://min.io/ "MinIO"
+[url-nginx]: https://nginx.org/ "Nginx"
+[url-psql]: https://www.postgresql.org/ "PostgreSQL"
+[url-ubuntu]: https://discourse.ubuntu.com/t/jammy-jellyfish-release-notes/24668 "Ubuntu 22.04 - Jammy Jellyfish"
