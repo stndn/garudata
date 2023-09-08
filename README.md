@@ -4,6 +4,7 @@ Garudata is a simplified showcase of various tools coming together to build an e
 
 It is designed to streamline data ingestion, transformation, access, and sharing, allowing data users to easily understand data throughout its journey.
 
+
 ## Technology
 
 The data platform will be built on top of the followings:
@@ -17,6 +18,18 @@ The data platform will be built on top of the followings:
 
 All tools (except for Nginx) will be deployed as containers. Host OS is [Ubuntu Server 22.04][url-ubuntu].
 
+
+## Usage
+
+### Requirements
+
+1. Install Docker and Compose
+2. Setup Docker network to connect and share the network among various containers. In this project, `garudanet` in `10.10.17.0/24` is used:
+    ```
+    docker network create -d bridge --subnet 10.10.17.0/24 --gateway 10.10.17.1 garudanet
+    ```
+
+
 ## Roadmap
 
 The list is not exhaustive and may change along the way:
@@ -28,6 +41,7 @@ The list is not exhaustive and may change along the way:
 - [ ] Deploy workflow using Airflow
 - [ ] Design simple dashboards
 - [ ] Other improvements along the way
+
 
 ## License
 
