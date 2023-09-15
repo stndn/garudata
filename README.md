@@ -11,6 +11,7 @@ The data platform will be built on top of the followings:
 * [Apache Airflow][url-airflow]
 * [Apache Spark][url-spark]
 * [Apache Superset][url-superset]
+* [DataHub][url-datahub]
 * [Docker + Compose][url-docker]
 * [MinIO][url-minio]
 * [Nginx][url-nginx]
@@ -40,6 +41,7 @@ The list is not exhaustive and may change along the way:
 - [ ] Develop data extraction script
 - [ ] Deploy workflow using Airflow
 - [ ] Design simple dashboards
+- [ ] Manage metadata
 - [ ] Other improvements along the way
 
 
@@ -55,10 +57,11 @@ The data platform is a self-learning project. As such, it is shared under [The U
 
 <!-- Links -->
 [url-airflow]: https://airflow.apache.org/ "Apache Airflow"
-[url-spark]: https://spark.apache.org/ "Apache Spark"
-[url-superset]: https://superset.apache.org/ "Apache Superset"
+[url-datahub]: https://datahubproject.io/ "DataHub"
 [url-docker]: https://docs.docker.com/compose/ "Docker + Compose"
 [url-minio]: https://min.io/ "MinIO"
 [url-nginx]: https://nginx.org/ "Nginx"
 [url-psql]: https://www.postgresql.org/ "PostgreSQL"
+[url-spark]: https://spark.apache.org/ "Apache Spark"
+[url-superset]: https://superset.apache.org/ "Apache Superset"
 [url-ubuntu]: https://discourse.ubuntu.com/t/jammy-jellyfish-release-notes/24668 "Ubuntu 22.04 - Jammy Jellyfish"
