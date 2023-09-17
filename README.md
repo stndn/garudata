@@ -34,7 +34,7 @@ All tools (except for Nginx) will be deployed in containers. Host OS is [Ubuntu 
 ## Roadmap
 
 The list is not exhaustive and may change along the way:
-- [ ] Design end-to-end data platform architecture
+- [X] Design end-to-end data platform architecture
 - [ ] Setup the server and the components
 - [ ] Develop a data journey use case
 - [ ] Design data model
