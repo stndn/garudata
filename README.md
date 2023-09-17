@@ -17,7 +17,7 @@ The data platform will be built on top of the followings:
 * [Nginx][url-nginx]
 * [PostgreSQL][url-psql]
 
-All tools (except for Nginx) will be deployed as containers. Host OS is [Ubuntu Server 22.04][url-ubuntu].
+All tools (except for Nginx) will be deployed in containers. Host OS is [Ubuntu Server 22.04][url-ubuntu].
 
 
 ## Usage
@@ -47,7 +47,9 @@ The list is not exhaustive and may change along the way:
 
 ## License
 
-The data platform is a self-learning project. As such, it is shared under [The Unlicense](/UNLICENSE.txt).
+The data platform is a self-learning project, shared under [MIT License](/LICENSE).
+
+All included applications follow their respective licenses.
 
 
 ## References
