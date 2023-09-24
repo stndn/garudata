@@ -18,9 +18,9 @@ Once done, perform the initialization step for Airflow:
 docker compose up airflow-init
 ```
 
-Followed by starting up Airflow container:
+Followed by starting up Airflow container (with `-d` to start in background):
 ```
-docker compose up
+docker compose up -d
 ```
 
 For more information, please visit the documentation page for [running Airflow in Docker](https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html).
