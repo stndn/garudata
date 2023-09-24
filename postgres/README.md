@@ -14,7 +14,7 @@ Optional steps:
 
 ### Startup
 
-Once done, start the container
+Once done, start the container (with -d flag to make it run as daemon)
 ```
-docker compose up
+docker compose up -d
 ```
