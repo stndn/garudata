@@ -29,6 +29,10 @@ Other optional configuration can be added such as:
 AIRFLOW__CORE__DEFAULT_TIMEZONE='Asia/Kuala_Lumpur'
 ```
 
+By default, Airflow comes with example DAG's for reference. To disable the examples, make sure to:
+1. Set `load_examples = False` in [airflow.cfg][url-airflow-cfg]
+1. Set `AIRFLOW__CORE__LOAD_EXAMPLES: 'false'` in [compose.yaml][url-airflow-compose]
+
 
 ### Startup
 
