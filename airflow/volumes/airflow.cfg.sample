@@ -105,6 +105,7 @@ default_timezone = 'Asia/Kuala_Lumpur'
 # Variable: AIRFLOW__CORE__LOAD_EXAMPLES
 #
 # load_examples = True
+load_examples = False
 
 # Path to the folder containing Airflow plugins
 #
