@@ -13,6 +13,7 @@ Required steps:
 
 ### Configuration
 
+#### Webserver and Proxy
 Eventually, we want to serve [Airflow via Nginx proxy][url-airflow-proxy].
 
 To ensure the reverse proxy matches properly, there are several additional [configuration for Airflow][url-airflow-configs] to be set. This can be done in Airflow's configuration file ([airflow.cfg][url-airflow-cfg]) or as [environment variables][url-airflow-dotenv] as such:
@@ -23,11 +24,25 @@ AIRFLOW__WEBSERVER__FLOWER_URL_PREFIX='/myorg/flower'
 AIRFLOW__WEBSERVER__ENABLE_PROXY_FIX='True'
 ```
 
+#### Timezone
+
 Other optional configuration can be added such as:
 ```
 # To set default timezone used (instead of UTC)
 AIRFLOW__CORE__DEFAULT_TIMEZONE='Asia/Kuala_Lumpur'
 ```
+
+#### Non-default UID
+
+To simplify mounted directory and file sharing, we can use non-default Airflow UID instead of the recommended `50000`. To do so, set the `AIRFLOW_UID` to match the host user's UID in the [environment variables file][url-airflow-dotenv]. Example:
+```
+AIRFLOW_UID=1234
+```
+
+For more information, refer to the documentation on [environment variables supported by Docker Compose][url-airflow-compose-envvars]
+
+
+#### Examples
 
 By default, Airflow comes with example DAG's for reference. To disable the examples, make sure to:
 1. Set `load_examples = False` in [airflow.cfg][url-airflow-cfg]
@@ -57,3 +72,4 @@ For more information, please visit the documentation page for [running Airflow i
 [url-airflow-dotenv]: /airflow/.env.sample "Airflow sample environment file"
 [url-airflow-compose]: /airflow/compose.yaml "Airflow compose file"
 [url-postgres]: /postgres "PostgreSQL"
+[url-airflow-compose-envvars]: https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html#environment-variables-supported-by-docker-compose
