@@ -56,6 +56,24 @@ services:
       gdnet:
         ipv4_address: 10.10.17.24
 
+
+  minio-init:
+    env_file: '.env'
+    image: minio/mc:RELEASE.2023-09-29T16-41-22Z
+    depends_on:
+      - minio1
+    volumes:
+      - ./volumes/init:/tmp/minio-init/
+      - ./volumes/credentials:/credentials/
+    entrypoint:
+      sh /tmp/minio-init/minio-init.sh
+    profiles:
+      - setup
+    networks:
+      gdnet:
+        ipv4_address: 10.10.17.28
+
+
 ## By default this config uses default local driver,
 ## For custom volumes replace with volume driver configuration.
 volumes:
