@@ -1,0 +1,75 @@
+# Settings and configurations that are common for all containers
+x-minio-common: &minio-common
+  env_file: '.env'
+  image: quay.io/minio/minio:RELEASE.2023-09-30T07-02-29Z
+  command: server --console-address ":9001" http://minio{1...4}/data{1...2}
+  expose:
+    - "9000"
+    - "9001"
+  healthcheck:
+    test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+    interval: 30s
+    timeout: 20s
+    retries: 3
+
+# starts 4 docker containers running minio server instances.
+# using nginx reverse proxy, load balancing, you can access
+# it through port 9000.
+services:
+  minio1:
+    <<: *minio-common
+    hostname: minio1
+    volumes:
+      - data1-1:/data1
+      - data1-2:/data2
+    networks:
+      gdnet:
+        ipv4_address: 10.10.17.21
+
+  minio2:
+    <<: *minio-common
+    hostname: minio2
+    volumes:
+      - data2-1:/data1
+      - data2-2:/data2
+    networks:
+      gdnet:
+        ipv4_address: 10.10.17.22
+
+  minio3:
+    <<: *minio-common
+    hostname: minio3
+    volumes:
+      - data3-1:/data1
+      - data3-2:/data2
+    networks:
+      gdnet:
+        ipv4_address: 10.10.17.23
+
+  minio4:
+    <<: *minio-common
+    hostname: minio4
+    volumes:
+      - data4-1:/data1
+      - data4-2:/data2
+    networks:
+      gdnet:
+        ipv4_address: 10.10.17.24
+
+## By default this config uses default local driver,
+## For custom volumes replace with volume driver configuration.
+volumes:
+  data1-1:
+  data1-2:
+  data2-1:
+  data2-2:
+  data3-1:
+  data3-2:
+  data4-1:
+  data4-2:
+
+networks:
+  gdnet:
+    name: garudanet
+    external: true
+
