@@ -42,6 +42,16 @@ AIRFLOW_UID=1234
 For more information, refer to the documentation on [environment variables supported by Docker Compose][url-airflow-compose-envvars]
 
 
+#### SSH keys
+
+When adding a new SSH connection (via *Admin* > *Connections*, with *Connection Type = SSH*), we can specify the SSH private key to be used to connect to remote server. One of the ways is to specify the key file, which needs to be available from within the container.
+
+To simplify the setup, we can [create the key(s)][url-ssh-keygen] externally, and mount the directory containing the key file(s) by adding the following to the `volumes` section of our [compose.yaml][url-airflow-compose]:
+```
+    - ${AIRFLOW_PROJ_DIR:-.}/ssh-keys:/opt/airflow/ssh-keys
+```
+
+
 #### Examples
 
 By default, Airflow comes with example DAG's for reference. To disable the examples, make sure to:
@@ -72,4 +82,5 @@ For more information, please visit the documentation page for [running Airflow i
 [url-airflow-dotenv]: /airflow/.env.sample "Airflow sample environment file"
 [url-airflow-compose]: /airflow/compose.yaml "Airflow compose file"
 [url-postgres]: /postgres "PostgreSQL"
-[url-airflow-compose-envvars]: https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html#environment-variables-supported-by-docker-compose
+[url-airflow-compose-envvars]: https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html#environment-variables-supported-by-docker-compose "Environment variables supported by Docker Compose"
+[url-ssh-keygen]: https://www.ssh.com/academy/ssh/keygen "Using ssh-keygen to generate new SSH key"
