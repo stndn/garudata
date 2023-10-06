@@ -10,7 +10,7 @@
 mc alias set garudas3 ${MINIO_SERVER_URL} ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD}
 
 # Create new user
-if [ $(mc admin user info garudas3 ${MINIO_EXTRA_USER} | grep ${MINIO_EXTRA_USER} | wc -l) -eq 0 ]; then
+if [ $(mc admin user info garudas3 ${MINIO_EXTRA_USER} | grep '^${MINIO_EXTRA_USER}$' | wc -l) -eq 0 ]; then
   mc admin user add garudas3 ${MINIO_EXTRA_USER} ${MINIO_EXTRA_PASSWORD}
 else
   echo "Not creating new user: '${MINIO_EXTRA_USER}' exists"
@@ -37,13 +37,13 @@ fi
 
 
 # Attach policieCreate policies based on pre-defined filesLoad pre-defined policies that match the buckets
-if [ $(mc admin policy ls garudas3 | grep ${MINIO_EXTRA_BUCKET_1_POLICY} | wc -l) -eq 0 ]; then
+if [ $(mc admin policy ls garudas3 | grep '^${MINIO_EXTRA_BUCKET_1_POLICY}$' | wc -l) -eq 0 ]; then
   mc admin policy create garudas3/ ${MINIO_EXTRA_BUCKET_1_POLICY} /tmp/minio-init/policy_${MINIO_EXTRA_BUCKET_1_POLICY}.json
 else
   echo "Not creating a new policy: '${MINIO_EXTRA_BUCKET_1_POLICY}' exists"
 fi
 
-if [ $(mc admin policy ls garudas3 | grep ${MINIO_EXTRA_BUCKET_2_POLICY} | wc -l) -eq 0 ]; then
+if [ $(mc admin policy ls garudas3 | grep '^${MINIO_EXTRA_BUCKET_2_POLICY}$' | wc -l) -eq 0 ]; then
   mc admin policy create garudas3/ ${MINIO_EXTRA_BUCKET_2_POLICY} /tmp/minio-init/policy_${MINIO_EXTRA_BUCKET_2_POLICY}.json
 else
   echo "Not creating a new policy: '${MINIO_EXTRA_BUCKET_2_POLICY}' exists"
@@ -51,13 +51,13 @@ fi
 
 
 # Assign the new policies to the user
-if [ $(mc admin policy entities garudas3 -u ${MINIO_EXTRA_USER} | grep ${MINIO_EXTRA_BUCKET_1_POLICY} | wc -l) -eq 0 ]; then
+if [ $(mc admin policy entities garudas3 -u ${MINIO_EXTRA_USER} | grep '^${MINIO_EXTRA_BUCKET_1_POLICY}$' | wc -l) -eq 0 ]; then
   mc admin policy attach garudas3 ${MINIO_EXTRA_BUCKET_1_POLICY} --user ${MINIO_EXTRA_USER}
 else
   echo "Not attaching the policy to user '${MINIO_EXTRA_USER}': '${MINIO_EXTRA_BUCKET_1_POLICY}' is already assigned"
 fi
 
-if [ $(mc admin policy entities garudas3 -u ${MINIO_EXTRA_USER} | grep ${MINIO_EXTRA_BUCKET_2_POLICY} | wc -l) -eq 0 ]; then
+if [ $(mc admin policy entities garudas3 -u ${MINIO_EXTRA_USER} | grep '^${MINIO_EXTRA_BUCKET_2_POLICY}$' | wc -l) -eq 0 ]; then
   mc admin policy attach garudas3 ${MINIO_EXTRA_BUCKET_2_POLICY} --user ${MINIO_EXTRA_USER}
 else
   echo "Not attaching the policy to user '${MINIO_EXTRA_USER}': '${MINIO_EXTRA_BUCKET_2_POLICY}' is already assigned"
