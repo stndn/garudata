@@ -1,0 +1,22 @@
+services:
+  redis:
+    image: redis:7.2.1-alpine3.18
+    expose:
+      - 6379
+    volumes:
+      - ./volumes/data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 30s
+      retries: 50
+      start_period: 30s
+    restart: always
+    networks:
+      gdnet:
+        ipv4_address: 10.10.17.3
+
+networks:
+  gdnet:
+    name: garudanet
+    external: true
