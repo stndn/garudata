@@ -1,0 +1,88 @@
+#
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+x-superset-image: &superset-image apache/superset:${TAG:-latest-dev}
+x-superset-volumes:
+  &superset-volumes # /app/pythonpath_docker will be appended to the PYTHONPATH in the final container
+  - ./volumes/docker:/app/docker
+  - ./volumes/superset_home:/app/superset_home
+x-superset-common:
+  &superset-common
+  env_file: .env
+  user: 'root'
+
+services:
+
+  superset:
+    <<: *superset-common
+    image: *superset-image
+    container_name: superset_app
+    command: ["/app/docker/docker-bootstrap.sh", "app-gunicorn"]
+    restart: unless-stopped
+    ports:
+      - 8088:8088
+    volumes: *superset-volumes
+    networks:
+      gdnet:
+        ipv4_address: 10.10.17.31
+
+  superset-init:
+    <<: *superset-common
+    image: *superset-image
+    command: ["/app/docker/docker-init.sh"]
+    volumes: *superset-volumes
+    healthcheck:
+      disable: true
+    networks:
+      gdnet:
+        ipv4_address: 10.10.17.32
+
+  superset-worker:
+    <<: *superset-common
+    image: *superset-image
+    command: ["/app/docker/docker-bootstrap.sh", "worker"]
+    restart: unless-stopped
+    volumes: *superset-volumes
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'celery -A superset.tasks.celery_app:app inspect ping -d "celery@$$HOSTNAME"'
+        ]
+    networks:
+      gdnet:
+        ipv4_address: 10.10.17.33
+
+  superset-worker-beat:
+    <<: *superset-common
+    image: *superset-image
+    command: ["/app/docker/docker-bootstrap.sh", "beat"]
+    restart: unless-stopped
+    volumes: *superset-volumes
+    healthcheck:
+      disable: true
+    networks:
+      gdnet:
+        ipv4_address: 10.10.17.34
+
+volumes:
+  superset_home:
+    external: false
+
+networks:
+  gdnet:
+    name: garudanet
+    external: true
