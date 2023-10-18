@@ -17,6 +17,27 @@ Required steps:
 Apart from setting the [environment variables][url-superset-dotenv], additional configurations can be specified and customized via a python file in [`volumes/docker/pythonpath/`][url-pythonpath]. This will overwrite the configurations specified in [`volumes/docker/pythonpath/superset_config.py`][url-pythonpath-superset-config].
 
 
+### Database users
+
+In Superset's *Settings > Database Connections*, we can define the databases we want to connect to.
+
+It is recommended to create a read-only database user reserved for reading data for use in Superset.
+
+For PostgreSQL, the followings are the commands needed to create read-only user:
+```
+CREATE USER readonlyuser WITH PASSWORD 'a_v3ry_str0ng_p455w0rd';
+
+-- The followings need to be done for all schemas which we want readonlyuser to use
+
+-- Grant access on existing tables
+GRANT USAGE ON SCHEMA public TO readonlyuser;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO readonlyuser;
+
+-- Grant access to future tables
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO readonlyuser;
+```
+
+
 ### Startup
 
 Once done, start the container (with -d flag to make it run as daemon)
