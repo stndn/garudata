@@ -35,12 +35,13 @@ All tools (except for Nginx) will be deployed in containers. Host OS is [Ubuntu 
 
 The list is not exhaustive and may change along the way:
 - [X] Design end-to-end data platform architecture
-- [ ] Setup the server and the components
-- [ ] Develop a data journey use case
-- [ ] Design data model
-- [ ] Develop data extraction script
-- [ ] Deploy workflow using Airflow
-- [ ] Design simple dashboards
+- [X] Setup the server and the components
+- [ ] Setup Apache Spark
+- [X] Develop a data journey use case (Note: Refer to [Merpati][url-merpati] project)
+- [X] Design data model (Note: Refer to [Merpati][url-merpati] project)
+- [X] Develop data extraction script (Note: Refer to [Merpati][url-merpati] project)
+- [X] Deploy workflow using Airflow (Note: Refer to [Jalak][url-jalak] project)
+- [X] Design simple dashboards
 - [ ] Manage metadata
 - [ ] Other improvements along the way
 
@@ -52,10 +53,11 @@ The data platform is a self-learning project, shared under [MIT License](/LICENS
 All included applications follow their respective licenses.
 
 
+<!--
 ## References
 
 (References organization in progress)
-
+-->
 
 <!-- Links -->
 [url-airflow]: https://airflow.apache.org/ "Apache Airflow"
@@ -67,3 +69,5 @@ All included applications follow their respective licenses.
 [url-spark]: https://spark.apache.org/ "Apache Spark"
 [url-superset]: https://superset.apache.org/ "Apache Superset"
 [url-ubuntu]: https://discourse.ubuntu.com/t/jammy-jellyfish-release-notes/24668 "Ubuntu 22.04 - Jammy Jellyfish"
+[url-merpati]: https://github.com/stndn/merpati/
+[url-jalak]: https://github.com/stndn/jalak/
