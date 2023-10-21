@@ -20,6 +20,13 @@ The data platform will be built on top of the followings:
 All tools (except for Nginx) will be deployed in containers. Host OS is [Ubuntu Server 22.04][url-ubuntu].
 
 
+### Notice of change
+
+It seems that Apache Superset does not support non-aggregated value in the metrics ([#5570][url-superset-issue-5570], [#19182][url-superset-discussion-19182]). As this is a feature that is necessary to support [the weather data project][url-merpati], it looks like the business intelligence tool will need to be replaced.
+
+I am currently exploring [Metabase][url-metabase] as the replacement tool.
+
+
 ## Usage
 
 ### Requirements
@@ -71,3 +78,7 @@ All included applications follow their respective licenses.
 [url-ubuntu]: https://discourse.ubuntu.com/t/jammy-jellyfish-release-notes/24668 "Ubuntu 22.04 - Jammy Jellyfish"
 [url-merpati]: https://github.com/stndn/merpati/
 [url-jalak]: https://github.com/stndn/jalak/
+[url-superset-issue-5570]: https://github.com/apache/superset/issues/5570 "Make aggregation not mandatory"
+[url-superset-discussion-19182]: https://github.com/apache/superset/discussions/19182 "Add 'metric' to show actual value of column, i.e. no aggregate"
+[url-metabase]: https://www.metabase.com/
+
