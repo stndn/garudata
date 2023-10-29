@@ -5,6 +5,11 @@ Garudata is a simplified showcase of various tools coming together to build an e
 It is designed to streamline data ingestion, transformation, access, and sharing, allowing data users to easily understand data throughout its journey.
 
 
+## Demo
+
+Visit [https://71182141.xyz/][url-71182141] and check out how the workflow management and dashboard works.
+
+
 ## Technology
 
 The data platform will be built on top of the followings:
@@ -81,4 +86,5 @@ All included applications follow their respective licenses.
 [url-superset-issue-5570]: https://github.com/apache/superset/issues/5570 "Make aggregation not mandatory"
 [url-superset-discussion-19182]: https://github.com/apache/superset/discussions/19182 "Add 'metric' to show actual value of column, i.e. no aggregate"
 [url-metabase]: https://www.metabase.com/
+[url-71182141]: https://71182141.xyz "Garudata @ 71182141.xyz"
 
