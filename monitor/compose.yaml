@@ -24,6 +24,17 @@ services:
         ipv4_address: 10.10.17.43
     restart: always
 
+  grafana:
+    image: 'grafana/grafana-oss:10.2.0'
+    ports:
+      - 127.0.0.1:3000:3000
+    user: "1000"
+    volumes:
+      - ./volumes/grafana/data:/var/lib/grafana
+    networks:
+      gdnet:
+        ipv4_address: 10.10.17.42
+    restart: always
 
 networks:
   gdnet:
